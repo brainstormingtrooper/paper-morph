@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`paper-morph`
+Polymorphic menu
+
+@demo demo/index.html 
+-->
+
+<dom-module id="paper-morph">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'paper-morph',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'paper-morph',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
