@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/maps-icons.html">
 
 <dom-module id="paper-morph">
     <template>
@@ -19,7 +20,7 @@
                 border-radius: 50%;
                 margin-right: 15px;
                 -webkit-transition-duration: 0.2s;
-                transition-duration: 0.2s;            
+                transition-duration: 0.2s;
             }
             .morphOpened{
                 width: 100%;
@@ -41,57 +42,26 @@
                 -webkit-transition-duration: 0.6s;
                 transition-duration: 0.6s;
             }
+            .icon{
+                width: 35px;
+                height: 35px;
+                color: #FFF;
+                display: block;
+                margin: auto;
+                top: 50%;
+                transform: translateY(-50%); 
+                -webkit-transition-duration: 0.6s;
+                transition-duration: 0.6s;
+            }
         </style>
 
 
         <div id="backClose"></div>
+
         <div class="morphClosed" id="morph">
+            <iron-icon id="fabicon" class="icon" icon="{{icon}}"></iron-icon>            
             <content></content>
         </div>
-
-
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
-        <h1>BIRRRRRRR</h1>
 
 
     </template>
@@ -102,39 +72,50 @@
             is: 'paper-morph',
 
             properties: {
-                prop1: {
-                    type: String,
-                    value: 'paper-morph',
-                },
                 open: {
                     type: Boolean,
                     value: false
+                },
+                icon: {
+                    type: String,
+                    value: "icons:add"
                 }
             },
             ready: function(){
-                this.listen(this.$.morph, 'tap', '_mudarClasse');
+                this.listen(this.$.morph, 'tap', '_changeState');
             },
-            _mudarClasse: function(){
-                if (!this.open) {
-                    this.open = true;
-
-                    this.unlisten(this.$.morph, 'tap', '_mudarClasse');
-                    this.listen(this.$.backClose, 'tap', '_mudarClasse');
-
-                    this.$.morph.classList.add('morphOpened');
-                    this.$.backClose.classList.add('backClose');
-
-                }else{
-                    this.open = false;
-
-                    this.listen(this.$.morph, 'tap', '_mudarClasse');
-                    this.unlisten(this.$.backClose, 'tap', '_mudarClasse');
-
-                    this.$.morph.classList.remove('morphOpened');
-                    this.$.backClose.classList.remove('backClose');
-
+            _changeState: function(){
+                if (!this.open) {                    
+                    this._open();
+                }else{                    
+                    this._close();
                 }
+            },
+            _open: function(){
+                this.open = true;
 
+                this.unlisten(this.$.morph, 'tap', '_changeState');
+                this.listen(this.$.backClose, 'tap', '_changeState');
+
+                this.$.morph.classList.add('morphOpened');
+                this.$.backClose.classList.add('backClose');
+
+                this.$.fabicon.style.display = "none";
+                this.$.fabicon.style.opacity = 0;
+            },
+            _close: function(){
+                this.open = false;
+
+                this.listen(this.$.morph, 'tap', '_changeState');
+                this.unlisten(this.$.backClose, 'tap', '_changeState');
+
+                this.$.morph.classList.remove('morphOpened');
+                this.$.backClose.classList.remove('backClose');
+
+                
+                this.$.fabicon.style.display = "block";
+                setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300);
+                
 
 
             }
