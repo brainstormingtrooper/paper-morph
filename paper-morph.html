@@ -6,14 +6,13 @@
         <style>
             :host{
                 display: block;
-                background-color: #FFFF00;
             }
             .morphClosed {
                 display: block;
                 width: 60px;
                 height: 60px;
                 position: fixed;
-                background-color: #FF0000;
+                background-color: var(--my-primary-color, #E91E63);
                 right: 0;
                 bottom: 10px;
                 z-index: 10;
@@ -41,6 +40,7 @@
                 height: 100%;
                 -webkit-transition-duration: 0.6s;
                 transition-duration: 0.6s;
+                z-index: 9;
             }
             .icon{
                 width: 35px;
@@ -53,6 +53,10 @@
                 -webkit-transition-duration: 0.6s;
                 transition-duration: 0.6s;
             }
+            #content{
+                -webkit-transition-duration: 0.6s;
+                transition-duration: 0.6s;
+            }
         </style>
 
 
@@ -60,7 +64,9 @@
 
         <div class="morphClosed" id="morph">
             <iron-icon id="fabicon" class="icon" icon="{{icon}}"></iron-icon>            
-            <content></content>
+            <div id="content">
+                <content></content>
+            </div>
         </div>
 
 
@@ -83,6 +89,9 @@
             },
             ready: function(){
                 this.listen(this.$.morph, 'tap', '_changeState');
+
+                this.$.content.style.display = "none";
+                this.$.content.style.opacity = 0;
             },
             _changeState: function(){
                 if (!this.open) {                    
@@ -101,7 +110,12 @@
                 this.$.backClose.classList.add('backClose');
 
                 this.$.fabicon.style.display = "none";
-                this.$.fabicon.style.opacity = 0;
+
+
+                this.$.content.style.opacity = 0;
+                this.$.content.style.display = "block";
+                setTimeout(()=> {this.$.content.style.opacity = 1}, 500); 
+                
             },
             _close: function(){
                 this.open = false;
@@ -112,10 +126,12 @@
                 this.$.morph.classList.remove('morphOpened');
                 this.$.backClose.classList.remove('backClose');
 
+
                 
                 this.$.fabicon.style.display = "block";
-                setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300);
-                
+                this.$.content.style.display = "none";                
+                setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300);  
+
 
 
             }
