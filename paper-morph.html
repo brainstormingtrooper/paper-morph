@@ -1,34 +1,144 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<!--
-`paper-morph`
-Polymorphic menu
-
-@demo demo/index.html 
--->
-
 <dom-module id="paper-morph">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
-  </template>
+    <template>
+        <style>
+            :host{
+                display: block;
+                background-color: #FFFF00;
+            }
+            .morphClosed {
+                display: block;
+                width: 60px;
+                height: 60px;
+                position: fixed;
+                background-color: #FF0000;
+                right: 0;
+                bottom: 10px;
+                z-index: 10;
+                border-radius: 50%;
+                margin-right: 15px;
+                -webkit-transition-duration: 0.2s;
+                transition-duration: 0.2s;            
+            }
+            .morphOpened{
+                width: 100%;
+                height: 75px;
+                position: fixed;
+                right: 0;
+                bottom: 0px;
+                border-radius: 0;
+                margin-right: 0px;
+            }
+            .backClose{
+                background-color: #000;
+                opacity: 0.7;
+                width: 100%;
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                height: 100%;
+                -webkit-transition-duration: 0.6s;
+                transition-duration: 0.6s;
+            }
+        </style>
 
-  <script>
-    Polymer({
 
-      is: 'paper-morph',
+        <div id="backClose"></div>
+        <div class="morphClosed" id="morph">
+            <content></content>
+        </div>
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 'paper-morph',
-        },
-      },
 
-    });
-  </script>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+        <h1>BIRRRRRRR</h1>
+
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'paper-morph',
+
+            properties: {
+                prop1: {
+                    type: String,
+                    value: 'paper-morph',
+                },
+                open: {
+                    type: Boolean,
+                    value: false
+                }
+            },
+            ready: function(){
+                this.listen(this.$.morph, 'tap', '_mudarClasse');
+            },
+            _mudarClasse: function(){
+                if (!this.open) {
+                    this.open = true;
+
+                    this.unlisten(this.$.morph, 'tap', '_mudarClasse');
+                    this.listen(this.$.backClose, 'tap', '_mudarClasse');
+
+                    this.$.morph.classList.add('morphOpened');
+                    this.$.backClose.classList.add('backClose');
+
+                }else{
+                    this.open = false;
+
+                    this.listen(this.$.morph, 'tap', '_mudarClasse');
+                    this.unlisten(this.$.backClose, 'tap', '_mudarClasse');
+
+                    this.$.morph.classList.remove('morphOpened');
+                    this.$.backClose.classList.remove('backClose');
+
+                }
+
+
+
+            }
+
+        });
+    </script>
 </dom-module>
