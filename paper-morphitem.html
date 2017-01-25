@@ -1,0 +1,64 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/maps-icons.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+
+<dom-module id="paper-morphitem">
+    <template>
+        <style>
+            :host{
+                display: block;
+            }
+            .morphitem{
+            	height: 75px;
+            	width: 75px;
+            	color: var(--icon-color, #FFF);	
+            	position: relative;
+            }
+            .icone{
+            	height: 42px;
+            	line-height: 42px;
+            	width: 100%;
+            	padding-top: 3px;
+            	text-align: center;
+            	box-sizing: border-box;
+            }
+            iron-icon{
+				width: 30px;
+				height: 30px;
+            }
+            .descricao{
+            	height: 20px;
+            	width: 100%;
+            	line-height: 20px;
+            	text-align: center;
+            	white-space: nowrap;
+            	overflow: hidden;
+            }
+
+        </style>
+
+		<div class="morphitem">
+			<div class="icone">
+				<iron-icon icon="[[icon]]"></iron-icon>
+			</div>
+			<div class="descricao">[[description]]</div>
+			<paper-ripple></paper-ripple>
+		</div>
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'paper-morphitem',
+            properties:{
+            	icon:{
+            		type: String
+            	},
+            	description:{
+            		type: String
+            	}
+            }
+        });
+    </script>
+</dom-module>

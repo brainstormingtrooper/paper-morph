@@ -59,7 +59,6 @@
             }
         </style>
 
-
         <div id="backClose"></div>
 
         <div class="morphClosed" id="morph">
@@ -68,7 +67,6 @@
                 <content></content>
             </div>
         </div>
-
 
     </template>
 
@@ -111,7 +109,6 @@
 
                 this.$.fabicon.style.display = "none";
 
-
                 this.$.content.style.opacity = 0;
                 this.$.content.style.display = "block";
                 setTimeout(()=> {this.$.content.style.opacity = 1}, 500); 
@@ -125,15 +122,10 @@
 
                 this.$.morph.classList.remove('morphOpened');
                 this.$.backClose.classList.remove('backClose');
-
-
-                
+           
                 this.$.fabicon.style.display = "block";
                 this.$.content.style.display = "none";                
                 setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300);  
-
-
-
             }
 
         });

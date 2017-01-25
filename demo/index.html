@@ -11,6 +11,7 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../paper-morph.html">
+    <link rel="import" href="../paper-morphitem.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
     </style>
@@ -19,13 +20,8 @@
         background-color: #FFFF00;
       }
 
-      .birrr{
-        width: 70px;
-        height: 75px;
-        background-color: #000;
-        float: left;
-        margin-right: 10px;
-        color: #FFF;
+      .bir{
+        display: inline-block;
       }
 
     </style>
@@ -36,13 +32,14 @@
       <demo-snippet>
         <template>
           <paper-morph>
-<!--             <div class="birrr">home</div>
-            <div class="birrr">Sair</div>
-            <div class="birrr">Condiguracao</div>
-            <div class="birrr">BIRR</div> -->
+            <paper-morphitem class="bir" icon="close" description="fechar"></paper-morphitem>
+            <paper-morphitem class="bir" icon="arrow-back" description="voltar"></paper-morphitem>
+            <paper-morphitem class="bir" icon="menu" description="menu"></paper-morphitem>
+            <paper-morphitem class="bir" icon="settings" description="configuração"></paper-morphitem>
           </paper-morph>
         </template>
       </demo-snippet>
     </div>
+
   </body>
 </html>
