@@ -6,11 +6,14 @@
     <template>
         <style>
             :host{
-                display: inline-block;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: -6px;
             }
             .morphitem{
             	height: 75px;
-            	width: 75px;
+            	width: 100px;
             	color: var(--second-icon-color, #FFF);	
             	position: relative;
             }
@@ -38,7 +41,8 @@
 
         </style>
 
-		<div class="morphitem">
+		<div class="morphitem" id="morphitem" >
+
 			<div class="icone">
 				<iron-icon icon="[[icon]]"></iron-icon>
 			</div>
