@@ -137,7 +137,8 @@
            
                 this.$.fabicon.style.display = "block";
                 this.$.content.style.display = "none";                
-                setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300);  
+                setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300); 
+                event.preventDefault();
             }
 
         });
