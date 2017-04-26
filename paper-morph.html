@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-icons/maps-icons.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icons/notification-icons.html">
 
 <dom-module id="paper-morph">
     <template>
@@ -53,7 +54,7 @@
                 display: block;
                 margin: auto;
                 top: 50%;
-                transform: translateY(-50%); 
+                transform: translateY(-50%);
                 -webkit-transition-duration: 0.6s;
                 transition-duration: 0.6s;
             }
@@ -67,7 +68,7 @@
         <div id="backClose"></div>
 
         <div class="morphClosed" id="morph">
-            <iron-icon id="fabicon" class="icon" icon="{{icon}}"></iron-icon>            
+            <iron-icon id="fabicon" class="icon" icon="{{icon}}"></iron-icon>
             <div id="content">
                 <content></content>
             </div>
@@ -97,16 +98,16 @@
                 this._widthDynamic(this.$.content.children.length);
             },
             _widthDynamic: function(qtd){
-                let arry = Array.from(this.$.content.children);   
+                let arry = Array.from(this.$.content.children);
                 var tamanho = 100 / qtd;
                 arry.forEach(function(index){
                     index.style.width = tamanho + "%";
                 })
             },
             _changeState: function(){
-                if (!this.open) {                    
+                if (!this.open) {
                     this._open();
-                }else{                    
+                }else{
                     this._close();
                 }
             },
@@ -123,8 +124,8 @@
 
                 this.$.content.style.opacity = 0;
                 this.$.content.style.display = "block";
-                setTimeout(()=> {this.$.content.style.opacity = 1}, 500); 
-                
+                setTimeout(()=> {this.$.content.style.opacity = 1}, 500);
+
             },
             _close: function(){
                 this.open = false;
@@ -134,10 +135,10 @@
 
                 this.$.morph.classList.remove('morphOpened');
                 this.$.backClose.classList.remove('backClose');
-           
+
                 this.$.fabicon.style.display = "block";
-                this.$.content.style.display = "none";                
-                setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300); 
+                this.$.content.style.display = "none";
+                setTimeout(()=> {this.$.fabicon.style.opacity = 1}, 300);
                 event.preventDefault();
             }
 
